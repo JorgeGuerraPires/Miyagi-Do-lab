@@ -1,0 +1,165 @@
+<!--  -->
+<app-linear-model-ui></app-linear-model-ui>
+<!--  -->
+
+
+<!-- Simulation paramter setting panel -->
+<div [class.mat-elevation-z8]="true" class="simulation-panel">
+    <section>
+        <h1>
+            Simulation setting panel <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+        </h1>
+
+        <mat-hint>Use this panel do set up your simulation</mat-hint>
+
+        <br>
+        <br>
+
+        <!-- Naming the simulation series -->
+        <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Give me a name 😀 </mat-label>
+            <mat-hint>(optional)</mat-hint>
+            <input matInput type="text" [(ngModel)]="simulationLabel">
+        </mat-form-field>
+
+
+
+        <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile>
+                <!-- Control of the simulation time -->
+                <table>
+                    <tr>
+                        <th>How long should the simulation last?</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="0"
+                                max="10" aria-label="units" (input)="pitch($event)" [disabled]="disabled">
+                            </mat-slider>
+                        </td>
+                    </tr>
+                    <mat-hint>Use this to see how your model evolve in time</mat-hint>
+
+                </table>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <!-- Control of the alfa paramater -->
+                <table>
+                    <tr>
+                        <th>Set the alfa parameter</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="0.1" min="-10"
+                                max="10" aria-label="units" (input)="pitchAlfa($event)" [disabled]="disabled">
+                            </mat-slider>
+                            <br>
+                            <mat-hint>Use this to see how your model changes with parameter changes (sensitivity
+                                analysis)
+                            </mat-hint>
+                        </td>
+
+                    </tr>
+                </table>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </section>
+    <br>
+    <br>
+    <mat-divider></mat-divider>
+    <section class="wrapper">
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="this.runSimulations(this.value)"
+                class="setting-panel-element">Go</button>
+            <button mat-raised-button color="accent" (click)="this.reset()" class="setting-panel-element">Reset</button>
+
+            <mat-divider></mat-divider>
+
+            <div *ngIf="this.plot">
+                <h4>Know more about your solution/model</h4>
+
+                <button mat-raised-button color="primary" (click)="analyticalSolution()"
+                    class="setting-panel-element">Plot analytical solution</button>
+
+                <button mat-raised-button color="primary" (click)="plotError()" class="setting-panel-element">Plot
+                    error</button>
+
+                <button mat-raised-button color="primary" (click)="sensitivityAnalysis()"
+                    class="setting-panel-element">Run sensitivity analysis</button>
+            </div>
+
+        </div>
+    </section>
+
+    <mat-divider></mat-divider>
+    <br>
+    <br>
+
+</div>
+
+<!-- Make sure it just plots if we have data -->
+<div *ngIf="this.plot" class="graph">
+    <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+</div>
+
+<div class="graph" *ngIf="this.plot2">
+    <plotly-plot [data]="graphError.data" [layout]="graphError.layout"></plotly-plot>
+</div>
+
+
+<!-- <section>
+    <div class="info_text">
+        <h1>About sensitivity analysis</h1>
+
+    </div>
+
+    <button mat-raised-button color="accent" (click)="sensitivityAnalysis()" class="setting-panel-element">Run
+        sensitivity
+        analysis</button>
+</section> -->
+
+
+
+
+
+
+
+<!-- <section> -->
+<!-- <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Fill out your name</ng-template>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+</section> -->

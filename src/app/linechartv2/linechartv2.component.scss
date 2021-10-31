@@ -1,0 +1,85 @@
+
+
+//Sensitivity analysis
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.info_text{
+  margin-left: 5rem;
+  border-color: black;
+}
+
+
+.setting-panel-element{
+ margin-right: 5rem;
+ margin-left: 5rem;
+}
+
+
+mat-slider {
+    width: 300px;
+  }
+  .button-simulations{
+    text-align: center;
+  }
+
+  .wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+
+.graph{
+  margin-top: 10rem;
+  margin-left: 20rem;
+}
+
+.simulation-panel{
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+//Button related
+
+// section {
+//   display: table;
+// }
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  // margin-left: 5rem;
+  // display: table-cell;
+  // width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
