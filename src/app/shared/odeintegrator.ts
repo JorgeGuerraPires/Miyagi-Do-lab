@@ -8,9 +8,9 @@ export class ODEIntegrator {
     log: number[][] = [[0]];
     timelog: number[] = [0];
     currentTime: number = 0;
+    finalTime: number;
 
     constructor(step: number = 0.01, derivative: Derivative, initialState: number[]) {
-
         this.step = step;
         this.derivative = derivative;
         this.currentState = initialState;
@@ -20,6 +20,15 @@ export class ODEIntegrator {
     getcurrentState = () => this.currentState;
     getTimeLog = () => this.timelog.map((element) => element * this.step);
     getTimeNoRescaling = () => this.timelog.map((element) => element);
+
+    /**
+     * 
+     * @returns rescaled time logs to the user-time perspective
+     */
+    getTimeScaled = () => {
+        const lastElement = this.timelog[this.timelog.length - 1];
+        return this.timelog.map((element) => (this.finalTime * element) / lastElement);
+    }
 
     getLogs = () => this.log;
     getStateLogs = (n: number) => this.getLogs().map(element => element[n]);
@@ -41,6 +50,7 @@ export class ODEIntegrator {
      */
 
     public integrate(finalTime: number) {
+        this.finalTime = finalTime
         const n = finalTime / this.step;//this shall calcualte the number of steps to give
 
         for (let i = 0; i < n; i++) {
@@ -48,4 +58,6 @@ export class ODEIntegrator {
             this.currentTime += this.step;//advance the clock one time forward
         }
     }
+
+
 }

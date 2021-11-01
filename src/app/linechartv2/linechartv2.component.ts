@@ -114,6 +114,7 @@ export class Linechartv2Component implements OnInit {
   sensitivityAnalysis() {
 
     const aux = makeArr(-5, 5, 10);
+    this.aux = [];//will clean the current simulation
 
     aux.forEach((element) => {
       this.alfa = element;
@@ -142,12 +143,13 @@ export class Linechartv2Component implements OnInit {
     this.Integrator.integrate(finalTime);
     /** */
 
-    if (this.simulationLabel)
+    if (this.simulationLabel) {
       this.aux.push(
-        { x: this.Integrator.getTimeLog(), y: this.Integrator.getStateLogs(0), type: 'scatter', mode: 'points', name: this.simulationLabel });
-    else
+        { x: this.Integrator.getTimeScaled(), y: this.Integrator.getStateLogs(0), type: 'scatter', mode: 'points', name: this.simulationLabel });
+      this.simulationLabel = "";
+    } else
       this.aux.push(
-        { x: this.Integrator.getTimeLog(), y: this.Integrator.getStateLogs(0), type: 'scatter', mode: 'points' });
+        { x: this.Integrator.getTimeScaled(), y: this.Integrator.getStateLogs(0), type: 'scatter', mode: 'points' });
 
     this.plot = true;
     this.disabled = false;
@@ -224,6 +226,32 @@ export class Linechartv2Component implements OnInit {
     console.log(aux2);
 
     this.graphError.data = [{ x: this.Integrator.getTimeLog(), y: aux2, type: 'scatter', mode: 'points', name: "Error" }];
+
+    this.graphError.layout = {
+      width: 820, height: 540, title: 'Error in function of time for the Numerical integration of our model',
+      xaxis: {
+        title: {
+          text: 'Time (t)',
+          font: {
+            family: 'Courier New, monospace',
+            size: 18,
+            color: '#7f7f7f'
+          }
+        },
+      },
+      yaxis: {
+        title: {
+          text: 'Error',
+          font: {
+            family: 'Courier New, monospace',
+            size: 18,
+            color: '#7f7f7f'
+          }
+        }
+      }
+    }
+
+
   }
 
 

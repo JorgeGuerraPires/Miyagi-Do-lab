@@ -10,7 +10,7 @@
             Simulation setting panel <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
         </h1>
 
-        <mat-hint>Use this panel do set up your simulation</mat-hint>
+        <mat-hint>Use this panel to set up your simulation</mat-hint>
 
         <br>
         <br>
@@ -38,7 +38,7 @@
                             </mat-slider>
                         </td>
                     </tr>
-                    <mat-hint>Use this to see how your model evolve in time</mat-hint>
+                    <mat-hint>Use this to see how your model evolves in time</mat-hint>
 
                 </table>
 
@@ -106,60 +106,5 @@
 
 <div class="graph" *ngIf="this.plot2">
     <plotly-plot [data]="graphError.data" [layout]="graphError.layout"></plotly-plot>
+    <mat-hint>Error: nunerical solution vs. analytical one</mat-hint>
 </div>
-
-
-<!-- <section>
-    <div class="info_text">
-        <h1>About sensitivity analysis</h1>
-
-    </div>
-
-    <button mat-raised-button color="accent" (click)="sensitivityAnalysis()" class="setting-panel-element">Run
-        sensitivity
-        analysis</button>
-</section> -->
-
-
-
-
-
-
-
-<!-- <section> -->
-<!-- <mat-vertical-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name</ng-template>
-                <mat-form-field>
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-            </div>
-        </mat-step>
-    </mat-vertical-stepper>
-</section> -->

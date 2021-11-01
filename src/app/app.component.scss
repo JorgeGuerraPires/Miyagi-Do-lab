@@ -7,3 +7,14 @@ mat-toolbar {
     font-style: italic;
   }
   
+
+  .book-cover{
+    // margin-left: 30%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .gif{
+    background: url("/assets/images/mathematics.gif")
+  }
