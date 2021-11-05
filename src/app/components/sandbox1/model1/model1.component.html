@@ -1,0 +1,93 @@
+<!-- <div class="box-diagram" [class.mat-elevation-z8]="true">
+    <app-boxdiagram></app-boxdiagram>
+    <mat-icon>info</mat-icon> Hey guys, using this awesome library, however, it was written for plain
+    JavaScript. You may need to reload the page
+    for seeing the model diagram. Press F5. Working on a solution! Have fun!
+</div> -->
+
+
+<mat-vertical-stepper #stepper>
+    <mat-step>
+        <app-controlpanel (output)="simulate($event)" [uicontrol]="uicontrol"></app-controlpanel>
+
+        <div>
+            <button mat-button matStepperNext mat-raised-button color="accent" *ngIf="simulationPlot.data.length">See
+                simulations!</button>
+        </div>
+    </mat-step>
+    <mat-step>
+
+        <div class="example-button-row buttons-group-1">
+            <button mat-button matStepperPrevious mat-raised-button color="accent"
+                *ngIf="simulationPlot.data.length">Redo simulations!</button>
+            <button mat-raised-button color="warn" (click)="reset()" *ngIf="simulationPlot.data.length">Reset</button>
+        </div>
+
+
+        <p *ngIf="!simulationPlot.data.length">no simulation yet </p>
+
+        <!-- Plotting -->
+        <div *ngIf="simulationPlot.data.length" class="graph">
+            <plotly-plot [data]="simulationPlot.data" [layout]="simulationPlot.layout" id="plotSimulations">
+            </plotly-plot>
+        </div>
+
+        <div class="example-button-row buttons-group-1">
+            <button mat-button matStepperNext mat-raised-button color="accent" *ngIf="simulationPlot.data.length">Keep
+                learning!</button>
+        </div>
+
+    </mat-step>
+
+    <mat-step>
+        <button mat-button mat-raised-button color="accent" *ngIf="simulationPlot.data.length"
+            (click)="analyticalSolution()">Plot
+            the analytical solution</button>
+
+        <!-- Plotting -->
+        <div *ngIf="simulationPlot.data.length" class="graph">
+            <plotly-plot [data]="simulationPlot.data" [layout]="simulationPlot.layout" id="plotSimulations">
+            </plotly-plot>
+        </div>
+
+        <div class="example-button-row buttons-group-1">
+            <button mat-button matStepperNext mat-raised-button color="accent" *ngIf="simulationPlot.data.length">Keep
+                learning!</button>
+        </div>
+    </mat-step>
+
+    <mat-step>
+        <button mat-button mat-raised-button color="accent" *ngIf="simulationPlot.data.length&&!ErrorPlot.data.length"
+            (click)="plotError()">Plot the error</button>
+
+        <!-- Plotting -->
+        <div *ngIf="ErrorPlot.data.length" class="graph">
+            <plotly-plot [data]="ErrorPlot.data" [layout]="ErrorPlot.layout" id="ErrorPlot">
+            </plotly-plot>
+        </div>
+
+        <div class="example-button-row buttons-group-1">
+            <button mat-button matStepperNext mat-raised-button color="accent"
+                *ngIf="simulationPlot.data.length&&ErrorPlot.data.length">Keep
+                learning!</button>
+        </div>
+    </mat-step>
+
+
+    <mat-step>
+
+        <button mat-button mat-raised-button color="accent" (click)="sensitivityAnalysis()"
+            *ngIf="simulationPlot.data.length">Sensitivity
+            analysis</button>
+
+        <!-- Plotting -->
+        <div class="graph" *ngIf="simulationPlot.data.length">
+            <plotly-plot [data]="sensitivityAnalysisPlot.data" [layout]="sensitivityAnalysisPlot.layout"
+                id="sensitivityAnalysisPlot">
+            </plotly-plot>
+        </div>
+
+
+
+    </mat-step>
+</mat-vertical-stepper>

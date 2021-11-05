@@ -1,0 +1,78 @@
+<!-- Simulation paramter setting panel -->
+<div [class.mat-elevation-z8]="true" class="simulation-panel">
+    <section class="info-input-panel">
+        <h1>
+            Simulation setting panel <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+        </h1>
+        <mat-hint>Use this panel to set up your simulation</mat-hint>
+
+        <br>
+        <br>
+
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Give me a name</mat-label>
+                <input matInput [(ngModel)]="parameters.simulationLabel">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>(optional)</mat-hint>
+            </mat-form-field>
+        </p>
+
+        <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile>
+                <!-- Control of the simulation time -->
+                <table>
+                    <tr>
+                        <th>How long should the simulation last?</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="0"
+                                max="10" aria-label="units" (input)="pitch($event)">
+                            </mat-slider>
+                        </td>
+                    </tr>
+                    <mat-hint>Use this to see how your model evolves in time</mat-hint>
+
+                </table>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <!-- Control of the alfa paramater -->
+                <table>
+                    <tr>
+                        <th>Set the alfa parameter</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="0.1" min="-10"
+                                max="10" aria-label="units" (input)="pitchAlfa($event)">
+                            </mat-slider>
+                            <br>
+                            <mat-hint>Use this to see how your model changes with parameter changes (sensitivity
+                                analysis)
+                            </mat-hint>
+                        </td>
+
+                    </tr>
+                </table>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </section>
+
+    <!-- Button panel -->
+    <section class="wrapper">
+        <mat-divider></mat-divider>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="runSimulations()" class="setting-panel-element"
+                [disabled]="!uicontrol.simulationButton">Go</button>
+        </div>
+        <mat-divider></mat-divider>
+    </section>
+    <!--  -->
+
+
+
+</div>
