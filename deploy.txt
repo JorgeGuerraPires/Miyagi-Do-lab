@@ -1,0 +1,17 @@
+git branch -M version 1.0.1
+git init
+git add .
+
+
+GitHub
+
+git remote add origin https://github.com/JorgeGuerraPires/Miyagi-Do-lab.git
+git push -u origin version_1_0_1_unittesting
+
+Heroku
+git init
+git add .
+git branch -M version 1.0.1
+git commit -m "first commit, 05/11/21"
+heroku git:remote -a miyagi-do-lab
+git push  -f heroku master
