@@ -1,6 +1,18 @@
+NPM repostiory
+ngx-mat-miyagi-dolab
+
+git init
+git add .
+git commit -m "adding the generic function cameleon"
+git push -u origin master
+
+
 
 NPM
 ng build NgxMatMiyagiDolab --prod
+
+Testing the library
+ng test NgxMatMiyagiDolab 
 
 
 git branch -M version 1.0.1
